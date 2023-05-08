@@ -6,18 +6,17 @@ Here are formula derivations for paper "Enhance broadcasting throughput by assoc
 
 $$
 \begin{aligned}
-    E[T_D&\left(\{S_1,S_2,\cdots, S_n\},R, \{D_1,D_2,\cdots, D_m\} \right)] \\
+    E[&T_D\left(\{S_1,S_2,\cdots, S_n\},R, \{D_1,D_2,\cdots, D_m\} \right)] \\
     &
     \begin{aligned}
-    = 1 &+ \sum_{\Delta}\bigg\{ 
+    = 1 &+ \sum_{\Delta}\bigg\lbrace
     \prod_{i\in [1,n]}\prod_{k\in [1,m]} (1-p_{(S_i,D_k)})^{\delta_{ik}}p_{(S_i,D_k)}^{(1-\delta_{ik})} \\
     &\times \bigg[
     \sum_{B}\Big(
     \prod_{j\in[1,n]} (1-p_{(S_j,R)})^{\beta_j} p_{(S_j,R)}^{(1-\beta_j)} \\
     &\times \big( (
-    \sum_{z\in [1, |\mathbb{P}|]}(\mathbb{P}[z]-\mathbb{P}[z+1]) E[T_A(R,\mathbb{D}_{z})]) \\
-    &+ E[T_D\left(\mathcal{S},R, \mathcal{D} \right)]
-    \big) \Big) \bigg] \bigg\}
+    \sum_{z\in [1, |\mathbb{P}|]}(\mathbb{P}[z]-\mathbb{P}[z+1]) E[T_A(R,\mathbb{D}_{z})])+ E[T_D\left(\mathcal{S},R, \mathcal{D} \right)]
+    \big) \Big) \bigg] \bigg\rbrace
     \end{aligned}        
 \end{aligned}
 $$
@@ -35,4 +34,4 @@ $$
 
 The term $\sum_{i=1}^{n\times m}(\vec{p}_i-\vec{p_{i-1}})\frac{\sum_{s\in \mathbb{S}}{E[T_A(R,\mathbb{D}_s)]}}{|\mathbb{S}|}$ is actually the number of transmissions in step two, which is indeed the formula (15) in \cite{nguyen_wireless_2009}. Note that it has great relation with the network coding-based relay strategy.
 
-The term $E[T_D\left(\mathcal{S},R, \mathcal{D} \right)]$ is a recursive item which is the number of retry packets for delivering them to the destinations in the next loop executing Protocol D, where $\mathcal{S}=\{S_i|\exists k\in [1,m],(\delta_{ik}=0) \& ({\beta_i}=0)\}$, which includes all sources that failed their broadcasts, and $\mathcal{D}=\{D_k|\exists i\in [1,n],(\delta_{ik}=0) \& ({\beta_i}=0)\}$, which includes all destinations that failed their receiving.
+The term $E[T_D\left(\mathcal{S},R, \mathcal{D} \right)]$ is a recursive item which is the number of retry packets for delivering them to the destinations in the next loop executing Protocol D, where $\mathcal{S}=\{S_i|\exists k\in [1,m],(\delta_{ik}=0) & ({\beta_i}=0)\}$, which includes all sources that failed their broadcasts, and $\mathcal{D}=\{D_k|\exists i\in [1,n],(\delta_{ik}=0) \& ({\beta_i}=0)\}$, which includes all destinations that failed their receiving.
